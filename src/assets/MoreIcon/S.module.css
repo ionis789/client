@@ -1,0 +1,10 @@
+.wrapper{
+    margin: 9px;
+}
+.color{
+    transition: 0.3s;
+}
+.color:hover{
+    stroke: #646cff;
+    cursor: pointer;
+}
