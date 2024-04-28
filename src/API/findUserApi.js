@@ -4,7 +4,7 @@ const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
 class FindUserApi {
   getMatchedUser = async (searchText, avoidUsers) => {
     return await axios.post(
-      `${apiDevelopMode}/users`,
+      `${apiProductionMode}/users`,
       { searchText, avoidUsers },
       { withCredentials: true },
     );
