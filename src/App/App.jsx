@@ -8,9 +8,8 @@ const App = () => {
     <div className={"h-screen "}>
       <BrowserRouter>
         <Routes>
-          <Route path={"/"} element={<Navigate to="/welcome" />} />
-          <Route path={"/welcome"} element={<WelcomePageContainer />} />
-          <Route path={"/dialogs/*"} element={<DialogsPage />} />
+          <Route path={"/"} element={<WelcomePageContainer />} />
+          <Route path={"/d/*"} element={<DialogsPage />} />
         </Routes>
       </BrowserRouter>
     </div>

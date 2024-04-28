@@ -1,10 +1,11 @@
 import axios from "axios";
-// const api = import.meta.env.VITE_API_URL;
+const apiDevelopMode = import.meta.env.VITE_DEVELOP_API_URL;
+const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
 class Authorization {
   async regRequest(mail, name, password) {
     try {
       const response = await axios.post(
-        `https://server-hxxk.onrender.com/auth/registration`,
+        `${apiProductionMode}/auth/registration`,
         {
           mail,
           name,
@@ -28,7 +29,7 @@ class Authorization {
   async logInRequest(mail, password) {
     try {
       const response = await axios.post(
-        `https://server-hxxk.onrender.com/auth/login`,
+        `${apiProductionMode}/auth/login`,
         {
           mail,
           password,

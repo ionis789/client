@@ -8,7 +8,7 @@ import { receivedMessageTC } from "../../redux/reducers/messages.js";
 const LeftSide = ({ isFocus, receivedMessageTC }) => {
   const [socketID, setSocketID] = useState(null);
   useEffect(() => {
-    // o sa arate in topmenu id-ul socketului al userului curent logat, ca sa lucreze trebuie sa dau props lui topmenu socketID
+    // o sa arate in top menu id-ul socket-ului al user-ului curent logat, ca sa lucreze trebuie sa dau props lui topMenuC socketID
     // io.on("connect", () => {
     //   setSocketID(io.id);
     // });

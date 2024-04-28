@@ -1,9 +1,10 @@
 import axios from "axios";
-// const api = import.meta.env.VITE_API_URL;
+const apiDevelopMode = import.meta.env.VITE_DEVELOP_API_URL;
+const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
 class FindUserApi {
   getMatchedUser = async (searchText, avoidUsers) => {
     return await axios.post(
-      `https://server-hxxk.onrender.com/users`,
+      `${apiProductionMode}/users`,
       { searchText, avoidUsers },
       { withCredentials: true },
     );

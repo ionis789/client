@@ -3,7 +3,6 @@ import WelcomePage from "./WelcomePage.jsx";
 import { connect } from "react-redux";
 import {
   logInSubmitTC,
-  logResponse,
   regSubmitTC,
   resetAuthResponse,
 } from "../redux/reducers/auth.js";

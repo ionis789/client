@@ -1,13 +1,14 @@
 import axios from "axios";
 import { io } from "../services/socket.js";
-// const api = import.meta.env.VITE_API_URL;
+const apiDevelopMode = import.meta.env.VITE_DEVELOP_API_URL;
+const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
 class RoomsApi {
   async createRoom(loggedUserID, userCompanionID) {
     io.emit("create_room", { loggedUserID, userCompanionID });
   }
   async getRooms() {
     try {
-      return await axios.get(`https://server-hxxk.onrender.com/rooms`, {
+      return await axios.get(`${apiProductionMode}/rooms`, {
         withCredentials: true,
       });
     } catch (error) {
