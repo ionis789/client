@@ -20,7 +20,7 @@ const LogIn = ({
 
   useEffect(() => {
     if (isAuthorized) {
-      navigate("/dialogs");
+      navigate("/d");
     }
   }, [isAuthorized]);
 

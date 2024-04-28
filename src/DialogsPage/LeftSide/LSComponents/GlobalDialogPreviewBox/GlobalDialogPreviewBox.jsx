@@ -1,6 +1,5 @@
 import React from "react";
 import DialogAvatarPreview from "../DialogAvatarPreview/DialogAvatarPreview.jsx";
-import { useNavigate } from "react-router-dom";
 const GlobalDialogPreviewBox = ({
   updatedUsers,
   defaultUserImg,
@@ -16,7 +15,7 @@ const GlobalDialogPreviewBox = ({
             key={d.user_id}
             className={
               selectedGlobalUserID === d.user_id
-                ? "bg-blue-400  p-2 mb-2 transition duration-300 hover:cursor-pointer  "
+                ? "bg-blue-500  p-2 mb-2 transition duration-300 hover:cursor-pointer  "
                 : "hover:bg-neutral-600  p-2 mb-2 transition duration-300 hover:cursor-pointer"
             }
           >
