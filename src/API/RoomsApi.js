@@ -8,7 +8,7 @@ class RoomsApi {
   }
   async getRooms() {
     try {
-      return await axios.get(`${apiDevelopMode}/rooms`, {
+      return await axios.get(`${apiProductionMode}/rooms`, {
         withCredentials: true,
       });
     } catch (error) {
