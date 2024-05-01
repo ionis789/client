@@ -31,7 +31,11 @@ const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
 
                 {r.messages.length > 0 ? (
                   <p className={"font-light"}>
-                    {r.messages[r.messages.length - 1].message_text}
+                    {r.messages[r.messages.length - 1].message_text.length > 15
+                      ? r.messages[
+                          r.messages.length - 1
+                        ].message_text.substring(0, 13) + "..."
+                      : r.messages[r.messages.length - 1].message_text}
                   </p>
                 ) : (
                   <p></p>

@@ -5,7 +5,7 @@ import DialogsListType from "./DialogsListType/DialogsListType.jsx";
 import { io } from "../../services/socket.js";
 import { receivedMessageTC } from "../../redux/reducers/messages.js";
 
-const LeftSide = ({ isFocus, receivedMessageTC }) => {
+const LeftSide = ({ isFocus, receivedMessageTC, showConversation }) => {
   const [socketID, setSocketID] = useState(null);
   useEffect(() => {
     // o sa arate in top menu id-ul socket-ului al user-ului curent logat, ca sa lucreze trebuie sa dau props lui topMenuC socketID
