@@ -8,8 +8,14 @@ class RoomsApi {
   }
   async getRooms() {
     try {
-      return await axios.get(`${apiProductionMode}/rooms`, {
-        withCredentials: true,
+      debugger;
+      const accessToken = JSON.parse(
+        localStorage.getItem("loggedUserInfo"),
+      ).accessToken;
+      return await axios.get(`${apiDevelopMode}/rooms`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
     } catch (error) {
       return {

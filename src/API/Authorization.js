@@ -5,7 +5,7 @@ class Authorization {
   async regRequest(mail, name, password) {
     try {
       const response = await axios.post(
-        `${apiProductionMode}/auth/registration`,
+        `${apiDevelopMode}/auth/registration`,
         {
           mail,
           name,
@@ -28,25 +28,27 @@ class Authorization {
   }
   async logInRequest(mail, password) {
     try {
+        debugger
       const response = await axios.post(
-        `${apiProductionMode}/auth/login`,
+        `${apiDevelopMode}/auth/login`,
         {
           mail,
           password,
         },
-        {
-          withCredentials: true,
-        },
-      );
-      localStorage.setItem(
-        "loggedUserInfo",
-        JSON.stringify({
-          isAuthorized: response.data.isAuthorized, // multumita la asta se va face useNavigate la dialogs
-          loggedUserID: response.data.loggedUserID,
-          loggedUserName: response.data.loggedUserName,
-          loggedUserMail: response.data.loggedUserMail,
-        }),
-      );
+      )
+          localStorage.setItem(
+              "loggedUserInfo",
+              JSON.stringify({
+                  accessToken: response.data.accessToken,
+                  isAuthorized: response.data.isAuthorized, // multumita la asta se va face useNavigate la dialogs
+                  loggedUserID: response.data.loggedUserID,
+                  loggedUserName: response.data.loggedUserName,
+                  loggedUserMail: response.data.loggedUserMail,
+              }),
+          );
+          return response;
+
+
     } catch (error) {
       return {
         status: error.response.status,
