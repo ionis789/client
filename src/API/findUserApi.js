@@ -8,7 +8,7 @@ class FindUserApi {
       localStorage.getItem("loggedUserInfo"),
     ).accessToken;
     return await axios.post(
-      `${apiDevelopMode}/users`,
+      `${apiProductionMode}/users`,
       { searchText, avoidUsers },
       {
         headers: {
