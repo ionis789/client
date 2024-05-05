@@ -8,6 +8,7 @@ const Conversation = ({
   selectedRoomID,
   potentialRoom,
   createRoomTC,
+  selectRoom,
 }) => {
   const selectedRoomData = allRoomsData.filter(
     (r) => r.roomID === selectedRoomID,
@@ -16,8 +17,12 @@ const Conversation = ({
     <>
       {/*daca este un utilizator cu care am inregistrata un room*/}
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
-        <div className={"h-screen grid grid-rows-[1fr,9fr,1fr] "}>
-          <TopMenu userCompanionInfo={selectedRoomData[0].userCompanionInfo} />
+        <div className={"relative h-screen w-full flex flex-col"}>
+          <TopMenu
+            userCompanionInfo={selectedRoomData[0].userCompanionInfo}
+            selectRoom={selectRoom}
+          />
+
           {/*Right side view chose */}
           {!selectedRoomData[0].messages.isEmpty ? (
             <MessagesRender
@@ -33,6 +38,7 @@ const Conversation = ({
               <h1 className={"font-bold text-3xl"}>No messages yet</h1>
             </div>
           )}
+
           <BottomMenuContainer />
         </div>
       ) : potentialRoom.isInitiateConversation ? (

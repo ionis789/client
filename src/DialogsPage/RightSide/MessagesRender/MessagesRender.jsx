@@ -19,8 +19,9 @@ const MessagesRender = ({ messages, userCompanionID }) => {
     });
   }, [messages, messages.length]);
   return (
-    <div className={"overflow-y-auto rounded-tl-3xl rounded-bl-3xl bg-black "}>
-      <p className={"text-2xl text-emerald-400"}></p>
+    <div
+      className={"overflow-y-auto absolute top-16 bottom-16 w-full  bg-black "}
+    >
       {messagesComponents}
     </div>
   );

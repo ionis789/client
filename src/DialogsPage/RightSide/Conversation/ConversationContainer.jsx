@@ -1,16 +1,18 @@
 import Conversation from "./Conversation.jsx";
 import { connect } from "react-redux";
-import { createRoomTC } from "../../../redux/reducers/rooms.js";
+import { createRoomTC, selectRoom } from "../../../redux/reducers/rooms.js";
 const ConversationContainer = ({
   potentialRoom,
   loggedUserID,
   selectedRoomID,
   createRoomTC,
   allRoomsData,
+  selectRoom,
 }) => {
   return (
-    <div className={" rounded-l-3xl border-l h-full "}>
+    <div>
       <Conversation
+        selectRoom={selectRoom}
         allRoomsData={allRoomsData}
         selectedRoomID={selectedRoomID}
         loggedUserID={loggedUserID}
@@ -32,4 +34,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   createRoomTC,
+  selectRoom,
 })(ConversationContainer);

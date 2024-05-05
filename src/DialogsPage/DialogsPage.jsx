@@ -21,13 +21,14 @@ const DialogsPage = ({ selectedRoomID }) => {
     checkScreenWidth(); // Apelează handleResize inițial pentru a seta starea la încărcarea paginii
     console.log(selectedRoomID);
   }, [showConversation]);
+
   return showConversation ? (
-    <div className="grid grid-cols-[3fr,7fr] h-screen bg-neutral-800 ">
+    <div className="grid grid-cols-[3fr,7fr] h-full w-full relative bg-neutral-800 ">
       <LeftSide />
       <RightSide />
     </div>
   ) : selectedRoomID == null ? (
-    <div className=" h-screen bg-neutral-800 ">
+    <div className=" max-h-full bg-neutral-800 ">
       <LeftSide />
     </div>
   ) : (

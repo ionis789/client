@@ -18,7 +18,7 @@ const LeftSide = ({ isFocus, receivedMessageTC, showConversation }) => {
   }, []);
 
   return (
-    <div className=" rounded-br-3xl overflow-hidden relative">
+    <div className=" rounded-br-3xl overflow-hidden ">
       <TopMenuC isFocus={isFocus} />
       <div className="overflow-auto h-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-800 bg-neutral-800">
         <DialogsListType isFocus={isFocus} />

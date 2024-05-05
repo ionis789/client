@@ -1,24 +1,25 @@
 import React from "react";
 import DialogAvatarPreview from "../../LeftSide/LSComponents/DialogAvatarPreview/DialogAvatarPreview.jsx";
 import defaultUserImg from "../../../assets/default_user_img.svg";
-const TopMenu = ({ userCompanionInfo }) => {
+const TopMenu = ({ userCompanionInfo, selectRoom }) => {
   return (
-    <div className={"rounded-tl-3xl bg-neutral-800"}>
-      <div className={`  flex justify-center gap-4 items-center`}>
-        <div
-          className={`  border-b-2  border-white hover:border-opacity-50 transition-colors duration-300 ease-in-out p-2 hover:cursor-pointer`}
-        >
-          <DialogAvatarPreview
-            defaultUserImg={
-              userCompanionInfo.photoURL
-                ? userCompanionInfo.photoURL
-                : defaultUserImg
-            }
-          />
-        </div>
-        <h3
-          className={"font-semibold text-xl shadow-neutral-100 p-2 rounded-lg"}
-        >
+    <div
+      className={
+        "absolute w-full top-0 h-16 flex flex-grow items-center justify-center"
+      }
+    >
+      <button onClick={() => selectRoom(null)}>
+        <p className={"text-xl font-medium hover:text-blue-400"}>Back</p>
+      </button>
+      <div className={`flex justify-center gap-4 items-center`}>
+        <DialogAvatarPreview
+          defaultUserImg={
+            userCompanionInfo.photoURL
+              ? userCompanionInfo.photoURL
+              : defaultUserImg
+          }
+        />
+        <h3 className={"font-semibold text-xl p-2 "}>
           {userCompanionInfo.user_name}
         </h3>
       </div>

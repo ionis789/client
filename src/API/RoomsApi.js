@@ -8,7 +8,6 @@ class RoomsApi {
   }
   async getRooms() {
     try {
-      debugger;
       const accessToken = JSON.parse(
         localStorage.getItem("loggedUserInfo"),
       ).accessToken;

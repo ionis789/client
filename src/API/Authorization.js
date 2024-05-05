@@ -28,7 +28,6 @@ class Authorization {
   }
   async logInRequest(mail, password) {
     try {
-      debugger;
       const response = await axios.post(`${apiProductionMode}/auth/login`, {
         mail,
         password,

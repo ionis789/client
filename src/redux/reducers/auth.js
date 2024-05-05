@@ -29,7 +29,6 @@ const auth = (state = defaultState, action) => {
       };
     }
     case LOG_RESPONSE: {
-      debugger;
       return {
         ...state,
         logResponse: action.response,
@@ -37,7 +36,6 @@ const auth = (state = defaultState, action) => {
     }
 
     case LOAD_USER_DATA: {
-      debugger;
       const loggedUserInfoString = localStorage.getItem("loggedUserInfo");
       const loggedUserInfo = JSON.parse(loggedUserInfoString);
       return {
@@ -54,9 +52,10 @@ const auth = (state = defaultState, action) => {
 };
 
 export const logInSubmitTC = (mail, password) => async (dispatch) => {
-  debugger;
   const response = await authorization.logInRequest(mail, password);
-  response.status === 200 ? dispatch(loadUserData()) : dispatch(logResponse(response));
+  response.status === 200
+    ? dispatch(loadUserData())
+    : dispatch(logResponse(response));
 };
 export const regSubmitTC = (mail, name, password) => async (dispatch) => {
   const response = await authorization.regRequest(mail, name, password);

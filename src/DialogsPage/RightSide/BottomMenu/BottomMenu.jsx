@@ -12,7 +12,7 @@ const BottomMenu = ({
   return (
     <div
       className={
-        " flex justify-between items-center  bg-neutral-800 rounded-bl-3xl"
+        "bottom-0 w-full absolute h-16  flex items-center justify-center"
       }
     >
       <MessageInputArea
