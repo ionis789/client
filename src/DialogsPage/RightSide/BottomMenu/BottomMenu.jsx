@@ -11,9 +11,7 @@ const BottomMenu = ({
 }) => {
   return (
     <div
-      className={
-        "bottom-0 w-full absolute h-16  flex items-center justify-center"
-      }
+      className={"bottom-0 w-full fixed h-16  flex items-center justify-center"}
     >
       <MessageInputArea
         messageInputText={messageInputText}

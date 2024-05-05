@@ -5,7 +5,7 @@ const TopMenu = ({ userCompanionInfo, selectRoom }) => {
   return (
     <div
       className={
-        "absolute w-full top-0 h-16 flex flex-grow items-center justify-center"
+        "fixed w-full top-0 h-16 flex flex-grow items-center justify-center"
       }
     >
       <button onClick={() => selectRoom(null)}>
