@@ -5,7 +5,7 @@ class Authorization {
   async regRequest(mail, name, password) {
     try {
       const response = await axios.post(
-        `${apiDevelopMode}/auth/registration`,
+        `${apiProductionMode}/auth/registration`,
         {
           mail,
           name,
@@ -28,7 +28,7 @@ class Authorization {
   }
   async logInRequest(mail, password) {
     try {
-      const response = await axios.post(`${apiDevelopMode}/auth/login`, {
+      const response = await axios.post(`${apiProductionMode}/auth/login`, {
         mail,
         password,
       });

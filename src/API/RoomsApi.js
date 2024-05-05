@@ -11,7 +11,7 @@ class RoomsApi {
       const accessToken = JSON.parse(
         localStorage.getItem("loggedUserInfo"),
       ).accessToken;
-      return await axios.get(`${apiDevelopMode}/rooms`, {
+      return await axios.get(`${apiProductionMode}/rooms`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
