@@ -9,6 +9,7 @@ const DialogsPage = ({ selectedRoomID }) => {
   const [sideWidth, setSideWidth] = useState(0);
   const elementRef = useRef(null);
   const checkScreenWidth = () => {
+    debugger;
     const width = window.innerWidth;
     const threshold = 768;
     if (width < threshold)
@@ -22,11 +23,7 @@ const DialogsPage = ({ selectedRoomID }) => {
   };
 
   useEffect(() => {
-    if (elementRef.current) {
-      const rect = elementRef.current.getBoundingClientRect();
-      setSideWidth(rect.width);
-      console.log(Math.round(rect.width));
-    } else setSideWidth(0);
+    checkScreenWidth();
     dispatch(loadUserData());
   }, []);
   useEffect(() => {
