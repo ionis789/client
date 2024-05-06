@@ -9,16 +9,18 @@ const Conversation = ({
   potentialRoom,
   createRoomTC,
   selectRoom,
+  sideWidth,
 }) => {
   const selectedRoomData = allRoomsData.filter(
     (r) => r.roomID === selectedRoomID,
   );
   return (
     <>
-      {/*daca este un utilizator cu care am inregistrata un room*/}
+      {/*daca este un utilizator cu care am un room*/}
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
-        <div className={"relative h-screen w-full flex flex-col"}>
+        <div className={"relative h-full w-full flex flex-col"}>
           <TopMenu
+            sideWidth={sideWidth}
             userCompanionInfo={selectedRoomData[0].userCompanionInfo}
             selectRoom={selectRoom}
           />
@@ -39,7 +41,7 @@ const Conversation = ({
             </div>
           )}
 
-          <BottomMenuContainer />
+          <BottomMenuContainer sideWidth={sideWidth} />
         </div>
       ) : potentialRoom.isInitiateConversation ? (
         <div className={" flex  flex-col justify-center items-center h-full"}>

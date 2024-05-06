@@ -8,10 +8,12 @@ const ConversationContainer = ({
   createRoomTC,
   allRoomsData,
   selectRoom,
+  sideWidth,
 }) => {
   return (
     <div>
       <Conversation
+        sideWidth={sideWidth}
         selectRoom={selectRoom}
         allRoomsData={allRoomsData}
         selectedRoomID={selectedRoomID}

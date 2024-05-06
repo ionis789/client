@@ -5,14 +5,12 @@ import WelcomePageContainer from "../WelcomePage/WelcomePageContainer.jsx";
 
 const App = () => {
   return (
-    <div className={"h-screen "}>
-      <BrowserRouter>
-        <Routes>
-          <Route path={"/"} element={<WelcomePageContainer />} />
-          <Route path={"/d"} element={<DialogsPage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/"} element={<WelcomePageContainer />} />
+        <Route path={"/d"} element={<DialogsPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

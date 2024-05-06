@@ -1,12 +1,11 @@
 import React from "react";
 import DialogAvatarPreview from "../../LeftSide/LSComponents/DialogAvatarPreview/DialogAvatarPreview.jsx";
 import defaultUserImg from "../../../assets/default_user_img.svg";
-const TopMenu = ({ userCompanionInfo, selectRoom }) => {
+const TopMenu = ({ userCompanionInfo, selectRoom, sideWidth }) => {
   return (
     <div
-      className={
-        "fixed w-full top-0 h-16 flex flex-grow items-center justify-center"
-      }
+      className={"fixed top-0 h-16 flex items-center justify-center"}
+      style={{ width: `calc(100vw - ${sideWidth}px)` }}
     >
       <button onClick={() => selectRoom(null)}>
         <p className={"text-xl font-medium hover:text-blue-400"}>Back</p>
