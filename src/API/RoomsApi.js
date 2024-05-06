@@ -1,6 +1,5 @@
 import axios from "axios";
 import { io } from "../services/socket.js";
-const apiDevelopMode = import.meta.env.VITE_DEVELOP_API_URL;
 const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
 class RoomsApi {
   async createRoom(loggedUserID, userCompanionID) {
@@ -11,7 +10,7 @@ class RoomsApi {
       const accessToken = JSON.parse(
         localStorage.getItem("loggedUserInfo"),
       ).accessToken;
-      return await axios.get(`${apiDevelopMode}/rooms`, {
+      return await axios.get(`${apiProductionMode}/rooms`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
