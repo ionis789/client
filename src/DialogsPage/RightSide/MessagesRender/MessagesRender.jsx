@@ -4,7 +4,6 @@ import LMessage from "./LMessage.jsx";
 const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
   const scrollRef = useRef(null);
   useEffect(() => {
-    debugger;
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length, messages]);
   const messagesComponents = useMemo(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TopMenu from "../TopMenu/TopMenu.jsx";
 import MessagesRender from "../MessagesRender/MessagesRender.jsx";
 import BottomMenuContainer from "../BottomMenu/BottomMenuContainer.jsx";

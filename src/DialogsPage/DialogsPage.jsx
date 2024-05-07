@@ -3,11 +3,14 @@ import LeftSide from "./LeftSide/LeftSide.jsx";
 import RightSide from "./RightSide/RightSide.jsx";
 import { connect, useDispatch } from "react-redux";
 import { loadUserData } from "../redux/reducers/auth.js";
-const DialogsPage = ({ selectedRoomID }) => {
+import { io } from "../services/socket.js";
+import { receivedMessageTC } from "../redux/reducers/messages.js";
+const DialogsPage = ({ selectedRoomID, receivedMessageTC }) => {
   const dispatch = useDispatch();
   const [showConversation, setShowConversation] = useState(true);
   const [sideWidth, setSideWidth] = useState(250);
   const elementRef = useRef(null);
+
   const checkScreenWidth = () => {
     const width = window.innerWidth;
     const threshold = 768;
@@ -19,6 +22,21 @@ const DialogsPage = ({ selectedRoomID }) => {
       setSideWidth(rect.width);
     } else setSideWidth(0);
   };
+
+  useEffect(() => {
+    // io.on("connect", () => {
+    //   setSocketID(io.id);
+    // });
+    let subscribe = true;
+    io.on("new_message", (messagePayLoad) => {
+      debugger;
+      if (subscribe) receivedMessageTC(messagePayLoad);
+    });
+    return () => {
+      subscribe = false;
+      io.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     checkScreenWidth();
@@ -52,4 +70,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(DialogsPage);
+export default connect(mapStateToProps, { receivedMessageTC })(DialogsPage);

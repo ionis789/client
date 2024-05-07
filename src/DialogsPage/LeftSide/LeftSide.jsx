@@ -1,26 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TopMenuC from "./TopMenu/TopMenuC.jsx";
 import { connect } from "react-redux";
 import DialogsListType from "./DialogsListType/DialogsListType.jsx";
-import { io } from "../../services/socket.js";
-import { receivedMessageTC } from "../../redux/reducers/messages.js";
-const LeftSide = ({ isFocus, receivedMessageTC, showConversation }) => {
-  const [socketID, setSocketID] = useState(null);
-  useEffect(() => {
-    // o sa arate in top menu id-ul socket-ului al user-ului curent logat, ca sa lucreze trebuie sa dau props lui topMenuC socketID
-    // io.on("connect", () => {
-    //   setSocketID(io.id);
-    // });
-    let subscribe = true;
-    io.on("new_message", (messagePayLoad) => {
-      if (subscribe) receivedMessageTC(messagePayLoad);
-    });
-    return () => {
-      subscribe = false;
-      io.disconnect();
-    };
-  }, []);
-
+const LeftSide = ({ isFocus }) => {
   return (
     <div className="overflow-hidden">
       <TopMenuC isFocus={isFocus} />
@@ -37,6 +19,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  receivedMessageTC,
-})(LeftSide);
+export default connect(mapStateToProps, {})(LeftSide);

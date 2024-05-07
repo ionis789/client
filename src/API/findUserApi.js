@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
+const API = import.meta.env.VITE_PRODUCTION_API_URL;
 class FindUserApi {
   getMatchedUser = async (searchText, avoidUsers) => {
     const accessToken = JSON.parse(
