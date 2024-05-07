@@ -26,12 +26,10 @@ const Messages = (state = defaultState, action) => {
   }
 };
 export const sendMessageTC = (roomID, senderID, messageInputText) => () => {
-  debugger;
   if (messageInputText !== "")
     messageApi.sendMessage(roomID, senderID, messageInputText);
 };
 export const receivedMessageTC = (messagePayLoad) => (dispatch) => {
-  debugger;
   dispatch(updateMessage(messagePayLoad));
   dispatch(resetMessageInputText());
 };

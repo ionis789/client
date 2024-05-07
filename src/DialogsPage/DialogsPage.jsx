@@ -9,7 +9,6 @@ const DialogsPage = ({ selectedRoomID }) => {
   const [sideWidth, setSideWidth] = useState(250);
   const elementRef = useRef(null);
   const checkScreenWidth = () => {
-    debugger;
     const width = window.innerWidth;
     const threshold = 768;
     if (width < threshold)
