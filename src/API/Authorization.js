@@ -1,10 +1,10 @@
 import axios from "axios";
-const apiProductionMode = import.meta.env.VITE_PRODUCTION_API_URL;
+const API = import.meta.env.VITE_PRODUCTION_API_URL;
 class Authorization {
   async regRequest(mail, name, password) {
     try {
       const response = await axios.post(
-        `${apiProductionMode}/auth/registration`,
+        `${API}/auth/registration`,
         {
           mail,
           name,
@@ -27,7 +27,7 @@ class Authorization {
   }
   async logInRequest(mail, password) {
     try {
-      const response = await axios.post(`${apiProductionMode}/auth/login`, {
+      const response = await axios.post(`${API}/auth/login`, {
         mail,
         password,
       });

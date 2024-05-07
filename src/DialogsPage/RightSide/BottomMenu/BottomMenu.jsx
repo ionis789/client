@@ -11,20 +11,24 @@ const BottomMenu = ({
   sideWidth,
 }) => {
   return (
-    <div
-      className={"bottom-0 fixed h-16  flex items-center justify-center"}
-      style={{ width: `calc(100vw - ${sideWidth}px)` }}
-    >
-      <MessageInputArea
-        messageInputText={messageInputText}
-        changeMessage={changeMessage}
-      />
-      <SendButton
-        sendMessageTC={sendMessageTC}
-        selectedRoomID={selectedRoomID}
-        senderID={senderID}
-        messageInputText={messageInputText}
-      />
+    <div className={"flex h-20 items-center justify-center "}>
+      <div
+        className={
+          "fixed h-20 bottom-0 flex items-center justify-center gap-4 p-4"
+        }
+        style={{ width: `calc(100vw - ${sideWidth}px)` }}
+      >
+        <MessageInputArea
+          messageInputText={messageInputText}
+          changeMessage={changeMessage}
+        />
+        <SendButton
+          sendMessageTC={sendMessageTC}
+          selectedRoomID={selectedRoomID}
+          senderID={senderID}
+          messageInputText={messageInputText}
+        />
+      </div>
     </div>
   );
 };

@@ -9,7 +9,6 @@ const NavState = ({
   searchText,
   setSearchText,
   eraseUsersTC,
-  socketID,
 }) => {
   return (
     <div className=" flex justify-between items-center gap-4 m-4 h-14 ">
@@ -17,7 +16,7 @@ const NavState = ({
         <FaArrowLeft
           onClick={() => eraseUsersTC()}
           size={"18px"}
-          className="hover: cursor-pointer hover:opacity-80 transition duration-200"
+          className="hover: cursor-pointer hover:text-blue-300 transition duration-200"
         />
       ) : (
         <SlOptions

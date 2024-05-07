@@ -18,7 +18,7 @@ const Conversation = ({
     <>
       {/*daca este un utilizator cu care am un room*/}
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
-        <div className={"relative h-full flex flex-col"}>
+        <div className={"h-full flex flex-col"}>
           <TopMenu
             sideWidth={sideWidth}
             userCompanionInfo={selectedRoomData[0].userCompanionInfo}

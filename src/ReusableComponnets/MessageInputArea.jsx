@@ -6,12 +6,12 @@ const MessageInputArea = ({ messageInputText, changeMessage }) => {
   };
 
   return (
-    <div className="w-full ">
-      <textarea
-        className="bg-neutral-800 w-full   border-t-neutral-500  focus:outline-none focus:border-t-neutral-300 resize-none  "
+    <div className="relative w-full h-full">
+      <input
+        className="h-full appearance-none bg-neutral-700 text-amber-50 rounded-lg w-full p-4 leading-tight focus:outline-none focus:bg-black"
         value={messageInputText}
-        placeholder={"Message"}
-        type={"text"}
+        placeholder="Message"
+        type="text"
         onChange={handleTextAreaChange}
       />
     </div>

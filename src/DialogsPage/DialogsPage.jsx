@@ -44,6 +44,9 @@ const DialogsPage = ({ selectedRoomID, receivedMessageTC }) => {
   }, []);
   useEffect(() => {
     window.addEventListener("resize", checkScreenWidth);
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth);
+    };
   }, []);
   return showConversation ? (
     <div className="grid grid-cols-[3fr,7fr] h-screen w-screen bg-neutral-800 ">
@@ -53,7 +56,7 @@ const DialogsPage = ({ selectedRoomID, receivedMessageTC }) => {
 
       <RightSide sideWidth={sideWidth} />
     </div>
-  ) : selectedRoomID == null ? (
+  ) : showConversation === false && selectedRoomID == null ? (
     <div className=" max-h-full bg-neutral-800 ">
       <div ref={elementRef}>
         <LeftSide />

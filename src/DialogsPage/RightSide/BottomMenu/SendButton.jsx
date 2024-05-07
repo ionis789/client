@@ -1,4 +1,5 @@
 import React from "react";
+import { GrSend } from "react-icons/gr";
 const SendButton = ({
   sendMessageTC,
   senderID,
@@ -11,7 +12,7 @@ const SendButton = ({
         sendMessageTC(selectedRoomID, senderID, messageInputText);
       }}
     >
-      Send
+      <GrSend size={"24px"} />
     </button>
   );
 };

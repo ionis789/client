@@ -4,7 +4,7 @@ import LMessage from "./LMessage.jsx";
 const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
   const scrollRef = useRef(null);
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "instant" });
   }, [messages.length, messages]);
   const messagesComponents = useMemo(() => {
     return messages.map((m) => {
@@ -25,7 +25,9 @@ const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
 
   return (
     <div
-      className={"overflow-y-auto fixed top-16 bottom-16 w-full  bg-black "}
+      className={
+        "overflow-y-auto fixed top-16 bottom-20 w-full  bg-black rounded-l-xl"
+      }
       style={{ width: `calc(100vw - ${sideWidth}px)` }}
     >
       {messagesComponents}
