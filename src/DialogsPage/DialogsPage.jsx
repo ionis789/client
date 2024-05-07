@@ -37,7 +37,9 @@ const DialogsPage = ({ selectedRoomID }) => {
     </div>
   ) : selectedRoomID == null ? (
     <div className=" max-h-full bg-neutral-800 ">
-      <LeftSide />
+      <div ref={elementRef}>
+        <LeftSide />
+      </div>
     </div>
   ) : (
     <RightSide sideWidth={0} />
