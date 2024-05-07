@@ -6,7 +6,7 @@ import { loadUserData } from "../redux/reducers/auth.js";
 const DialogsPage = ({ selectedRoomID }) => {
   const dispatch = useDispatch();
   const [showConversation, setShowConversation] = useState(true);
-  const [sideWidth, setSideWidth] = useState(0);
+  const [sideWidth, setSideWidth] = useState(250);
   const elementRef = useRef(null);
   const checkScreenWidth = () => {
     debugger;
@@ -18,7 +18,6 @@ const DialogsPage = ({ selectedRoomID }) => {
     if (elementRef.current) {
       const rect = elementRef.current.getBoundingClientRect();
       setSideWidth(rect.width);
-      console.log(Math.round(rect.width));
     } else setSideWidth(0);
   };
 

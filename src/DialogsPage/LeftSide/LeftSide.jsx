@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import DialogsListType from "./DialogsListType/DialogsListType.jsx";
 import { io } from "../../services/socket.js";
 import { receivedMessageTC } from "../../redux/reducers/messages.js";
-
 const LeftSide = ({ isFocus, receivedMessageTC, showConversation }) => {
   const [socketID, setSocketID] = useState(null);
   useEffect(() => {
@@ -12,9 +11,14 @@ const LeftSide = ({ isFocus, receivedMessageTC, showConversation }) => {
     // io.on("connect", () => {
     //   setSocketID(io.id);
     // });
+    let subscribe = true;
     io.on("new_message", (messagePayLoad) => {
-      receivedMessageTC(messagePayLoad);
+      if (subscribe) receivedMessageTC(messagePayLoad);
     });
+    return () => {
+      subscribe = false;
+      io.disconnect();
+    };
   }, []);
 
   return (
