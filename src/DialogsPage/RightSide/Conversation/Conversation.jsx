@@ -18,7 +18,7 @@ const Conversation = ({
     <>
       {/*daca este un utilizator cu care am un room*/}
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
-        <div className={"relative h-full w-full flex flex-col"}>
+        <div className={"relative h-full flex flex-col"}>
           <TopMenu
             sideWidth={sideWidth}
             userCompanionInfo={selectedRoomData[0].userCompanionInfo}
@@ -28,6 +28,7 @@ const Conversation = ({
           {/*Right side view chose */}
           {!selectedRoomData[0].messages.isEmpty ? (
             <MessagesRender
+              sideWidth={sideWidth}
               messages={selectedRoomData[0].messages}
               userCompanionID={selectedRoomData[0].userCompanionInfo.user_id}
             />

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import RMessage from "./RMessage.jsx";
 import LMessage from "./LMessage.jsx";
-const MessagesRender = ({ messages, userCompanionID }) => {
+const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
   const messagesComponents = useMemo(() => {
     return messages.map((m) => {
       if (m.sender_id === userCompanionID)
@@ -19,7 +19,10 @@ const MessagesRender = ({ messages, userCompanionID }) => {
     });
   }, [messages, messages.length]);
   return (
-    <div className={"overflow-y-auto fixed top-16 bottom-16 w-full  bg-black "}>
+    <div
+      className={"overflow-y-auto fixed top-16 bottom-16 w-full  bg-black "}
+      style={{ width: `calc(100vw - ${sideWidth}px)` }}
+    >
       {messagesComponents}
     </div>
   );

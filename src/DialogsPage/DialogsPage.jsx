@@ -42,7 +42,7 @@ const DialogsPage = ({ selectedRoomID }) => {
       <LeftSide />
     </div>
   ) : (
-    <RightSide sideWidth={sideWidth} />
+    <RightSide sideWidth={0} />
   );
 };
 
