@@ -31,7 +31,6 @@ export const sendMessageTC = (roomID, senderID, messageInputText) => () => {
     messageApi.sendMessage(roomID, senderID, messageInputText);
 };
 export const receivedMessageTC = (messagePayLoad) => (dispatch) => {
-  debugger;
   dispatch(updateMessage(messagePayLoad));
   dispatch(resetMessageInputText());
 };

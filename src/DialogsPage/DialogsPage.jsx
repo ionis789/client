@@ -29,7 +29,6 @@ const DialogsPage = ({ selectedRoomID, receivedMessageTC }) => {
     // });
     let subscribe = true;
     io.on("new_message", (messagePayLoad) => {
-      debugger;
       if (subscribe) receivedMessageTC(messagePayLoad);
     });
     return () => {
