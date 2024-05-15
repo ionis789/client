@@ -8,15 +8,15 @@ const BottomMenu = ({
   changeMessage,
   selectedRoomID,
   senderID,
-  sideWidth,
+  sideMenuWidth,
 }) => {
   return (
-    <div className={"flex h-20 items-center justify-center "}>
+    <div className={"flex h-20 items-center justify-center"}>
       <div
         className={
-          "fixed h-20 bottom-0 flex items-center justify-center gap-4 p-4"
+          "pl-4 pr-4 fixed h-20 bottom-0 flex items-center justify-center gap-4"
         }
-        style={{ width: `calc(100vw - ${sideWidth}px)` }}
+        style={{ width: `calc(100vw - ${sideMenuWidth}px)` }}
       >
         <MessageInputArea
           messageInputText={messageInputText}

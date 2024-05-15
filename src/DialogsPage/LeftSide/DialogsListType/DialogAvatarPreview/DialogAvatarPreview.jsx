@@ -4,8 +4,9 @@ const DialogAvatarPreview = ({ defaultUserImg }) => {
   return (
     <div className={"hover:cursor-pointer"}>
       <img
+        alt={"user photo"}
         src={defaultUserImg}
-        className={" rounded-xl  w-14 h-14 rounded-xl"}
+        className={"w-12 h-12 rounded-xl"}
       />
     </div>
   );

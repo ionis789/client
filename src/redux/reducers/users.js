@@ -1,6 +1,5 @@
 import { handleFocus, setSearchText } from "./search.js";
-import { discardInitiateRoom, initiateRoom } from "./rooms.js";
-
+import { discardInitiateRoom, selectGlobalUser } from "./rooms.js";
 const SET_NEW_USERS = "SET_NEW_USERS";
 const ERASE_USERS = "ERASE_USERS";
 let defaultState = {
@@ -40,6 +39,6 @@ export const eraseUsersTC = () => (dispatch) => {
   dispatch(handleFocus(false));
   dispatch(setSearchText(""));
   dispatch(discardInitiateRoom());
-  initiateRoom(false);
+  dispatch(selectGlobalUser(null));
 };
 export default users;

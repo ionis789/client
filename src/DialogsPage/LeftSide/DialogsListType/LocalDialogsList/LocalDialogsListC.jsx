@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import DialogPreviewBox from "../../LSComponents/DialogPreviewBox/DialogPreviewBox.jsx";
+import LocalDialogsListPreviewBox from "../LocalDialogsListPreviewBox/LocalDialogsListPreviewBox.jsx";
 import { connect } from "react-redux";
 import { getRoomsTC } from "../../../../redux/reducers/rooms.js";
 import { selectRoom } from "../../../../redux/reducers/rooms.js";
@@ -24,8 +24,8 @@ const LocalDialogsListC = ({
   }, [allRoomsData.length]);
 
   return (
-    <div className={" bg-neutral-800  "}>
-      <DialogPreviewBox
+    <div>
+      <LocalDialogsListPreviewBox
         allRoomsData={allRoomsData}
         selectRoom={selectRoom}
         selectedRoomID={selectedRoomID}

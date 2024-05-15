@@ -11,12 +11,12 @@ const BottomMenuContainer = ({
   senderID,
   selectedRoomID,
   changeMessage,
-  sideWidth,
+  sideMenuWidth,
 }) => {
   return (
     <>
       <BottomMenu
-        sideWidth={sideWidth}
+        sideMenuWidth={sideMenuWidth}
         sendMessageTC={sendMessageTC}
         messageInputText={messageInputText}
         changeMessage={changeMessage}

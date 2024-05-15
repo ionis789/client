@@ -1,0 +1,12 @@
+.parent {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 3px 20px 5px #28283d;
+}
+.child {
+    box-shadow: 0 20px 25px -5px #000, 0 8px 10px -6px #000;
+}
+.child::after {
+
+    z-index: -1;
+}

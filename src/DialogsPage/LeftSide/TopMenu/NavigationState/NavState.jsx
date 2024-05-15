@@ -1,7 +1,7 @@
 import React from "react";
 import { SlOptions } from "react-icons/sl";
 import { FaArrowLeft } from "react-icons/fa6";
-import SearchBox from "../../LSComponents/SearchBox/SearchBox.jsx";
+import SearchBox from "../../SearchBox/SearchBox.jsx";
 
 const NavState = ({
   handleFocus,
@@ -16,11 +16,11 @@ const NavState = ({
         <FaArrowLeft
           onClick={() => eraseUsersTC()}
           size={"18px"}
-          className="hover: cursor-pointer hover:text-blue-300 transition duration-200"
+          className="hover: cursor-pointer hover:opacity-80 transition duration-200"
         />
       ) : (
         <SlOptions
-          size={"18px"}
+          size={"20px"}
           className="hover: cursor-pointer hover:opacity-80 transition duration-200"
         />
       )}
@@ -31,7 +31,6 @@ const NavState = ({
         searchText={searchText}
         setSearchText={setSearchText}
       />
-      {/*<p>{socketID ? `Connected with id: ${socketID}` : "No connection"}</p>*/}
     </div>
   );
 };

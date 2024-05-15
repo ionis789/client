@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputForm from "../../ReusableComponnets/InputForm.jsx";
 import { FaArrowLeft } from "react-icons/fa6";
 import ErrorForm from "../ErrorForm.jsx";
-const Registration = ({
+const SignUp = ({
   goBack,
   regSubmitTC,
   regResponse,
@@ -30,7 +30,6 @@ const Registration = ({
       <form className={"bg-neutral-800 p-4 rounded-xl flex flex-col gap-4"}>
         {!regResponse ? (
           <>
-            {" "}
             <InputForm setInputData={setMail} placeHolder={"Email"} />
             <InputForm setInputData={setName} placeHolder={"Name"} />
             <InputForm setInputData={setPassword} placeHolder={"Password"} />
@@ -69,4 +68,4 @@ const Registration = ({
   );
 };
 
-export default Registration;
+export default SignUp;

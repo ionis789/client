@@ -1,9 +1,9 @@
 import React from "react";
 import ConversationContainer from "./Conversation/ConversationContainer.jsx";
-const RightSide = ({ sideWidth }) => {
+const RightSide = ({ sideMenuWidth }) => {
   return (
     <>
-      <ConversationContainer sideWidth={sideWidth} />
+      <ConversationContainer sideMenuWidth={sideMenuWidth} />
     </>
   );
 };

@@ -2,7 +2,11 @@ import React from "react";
 import DialogAvatarPreview from "../DialogAvatarPreview/DialogAvatarPreview.jsx";
 import defaultUserImg from "../../../../assets/default_user_img.svg";
 
-const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
+const LocalDialogsListPreviewBox = ({
+  allRoomsData,
+  selectRoom,
+  selectedRoomID,
+}) => {
   return (
     <div>
       {!allRoomsData.isEmpty &&
@@ -12,8 +16,8 @@ const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
             key={r.roomID}
             className={
               selectedRoomID === r.roomID
-                ? `p-2 mb-2 hover: cursor-pointer bg-blue-500`
-                : `p-2 mb-2 hover: cursor-pointer hover:bg-neutral-600 transition duration-200 `
+                ? "bg-blue-500  p-2 mb-2 transition duration-300 hover:cursor-pointer  "
+                : "hover:bg-neutral-600  p-2 mb-2 transition duration-300 hover:cursor-pointer"
             }
           >
             <div className={"flex items-center gap-3"}>
@@ -25,7 +29,7 @@ const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
                 }
               />
               <div>
-                <p className={" font-semibold text-lg"}>
+                <p className={" font-semibold text-md"}>
                   {r.userCompanionInfo.user_name}
                 </p>
 
@@ -34,7 +38,7 @@ const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
                     {r.messages[r.messages.length - 1].message_text.length > 15
                       ? r.messages[
                           r.messages.length - 1
-                        ].message_text.substring(0, 13) + "..."
+                        ].message_text.substring(0, 15) + "..."
                       : r.messages[r.messages.length - 1].message_text}
                   </p>
                 ) : (
@@ -48,4 +52,4 @@ const DialogPreviewBox = ({ allRoomsData, selectRoom, selectedRoomID }) => {
   );
 };
 
-export default DialogPreviewBox;
+export default LocalDialogsListPreviewBox;

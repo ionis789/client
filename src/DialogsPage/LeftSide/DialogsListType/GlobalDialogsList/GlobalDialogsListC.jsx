@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import GlobalDialogsList from "./GlobalDialogsList.jsx";
-import { setNewUsers } from "../../../../redux/reducers/users.js";
-import { setFetching } from "../../../../redux/reducers/preloader.js";
 import Preloader from "../../../../ReusableComponnets/Preloader/Preloader.jsx";
-import { getMatchedUsers } from "../../../../redux/reducers/rooms.js";
+import {
+  getMatchedUsers,
+  initiatePotentialRoomTC,
+} from "../../../../redux/reducers/rooms.js";
+import defaultUserImg from "../../../../assets/default_user_img.svg";
 const GlobalDialogsListC = ({
   isFetching,
   searchText,
   getMatchedUsers,
   allRoomsData,
+  initiatePotentialRoomTC,
+  updatedUsers,
+  selectedGlobalUserID,
 }) => {
   useEffect(() => {
     const avoidUsers = allRoomsData.map(
@@ -24,7 +29,12 @@ const GlobalDialogsListC = ({
           <Preloader />
         </div>
       ) : (
-        <GlobalDialogsList />
+        <GlobalDialogsList
+          defaultUserImg={defaultUserImg}
+          initiatePotentialRoomTC={initiatePotentialRoomTC}
+          updatedUsers={updatedUsers}
+          selectedGlobalUserID={selectedGlobalUserID}
+        />
       )}
     </>
   );
@@ -35,17 +45,12 @@ const mapStateToProps = (state) => {
     isFetching: state.preloader.isFetching,
     searchText: state.search.searchText,
     allRoomsData: state.rooms.allRoomsData,
+    updatedUsers: state.users.usersData,
+    selectedGlobalUserID: state.rooms.selectedGlobalUserID,
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setNewUsers: (usersData) => {
-//       dispatch(setNewDialogs(dialogsData));
-//     },
-//   }
-// };
-
-export default connect(mapStateToProps, { getMatchedUsers })(
-  GlobalDialogsListC,
-);
+export default connect(mapStateToProps, {
+  getMatchedUsers,
+  initiatePotentialRoomTC,
+})(GlobalDialogsListC);

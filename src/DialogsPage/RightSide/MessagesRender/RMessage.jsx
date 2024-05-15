@@ -1,10 +1,10 @@
 import React from "react";
-import MessageBlock from "./MessageBlock.jsx";
+import RightMessageBlock from "./RightMessageBlock.jsx";
 
 const RMessage = ({ messageText }) => {
   return (
     <div className={"flex justify-end"}>
-      <MessageBlock messageText={messageText} />
+      <RightMessageBlock messageText={messageText} />
     </div>
   );
 };

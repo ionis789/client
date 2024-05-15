@@ -81,7 +81,6 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case UPDATE_MESSAGES: {
-      // here I copy new message in allRoomsData and also in selectedRoomData in order to make rerender in real time, I need both because allRoomsData I use in LS when render List of users and I need here last written message to show, and also I need last updated data for selectedRoomData because of rerender, my component will rerender only if selectedRoomData will be changed
       const updatedMessagesRoom = state.allRoomsData.map((room) => {
         if (room.roomID === action.newMessage.room_id)
           room.messages.push(action.newMessage);
@@ -124,6 +123,7 @@ export const selectGlobalUser = (userID) => ({
   type: SELECT_GLOBAL_USER,
   userID,
 });
+
 export const createRoomTC =
   (loggedUserID, userCompanionID) => async (dispatch) => {
     // aici se face socket emit pentru crearea unei cameri noi "io.emit("create_room") dupa ce sa facut acel emit, multumita la then din functia de mai jos se va face dispatch-urile ce vor curata totul, dupa vine se executa emitul de la server, se va face cererea "getRoomsTC()" in LocalDialogsListC io.on("new_room"). executarea dispatchuri-lor ce curata totul se executa doar pentru acel care o facut cererea de creare de camere la acelalat user doar se va face "io.on("new_room")", asta se intampla din cauza ca dispatchurile sunt excutata doara daca intri in thunkul "createRoomTC" dar pentru companion asta nu se va intampla el doar va primia evenimentul socket si atat.

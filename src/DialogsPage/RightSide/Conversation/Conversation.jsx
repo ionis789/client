@@ -9,7 +9,7 @@ const Conversation = ({
   potentialRoom,
   createRoomTC,
   selectRoom,
-  sideWidth,
+  sideMenuWidth,
 }) => {
   const selectedRoomData = allRoomsData.filter(
     (r) => r.roomID === selectedRoomID,
@@ -20,7 +20,7 @@ const Conversation = ({
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
         <div className={"h-full flex flex-col"}>
           <TopMenu
-            sideWidth={sideWidth}
+            sideMenuWidth={sideMenuWidth}
             userCompanionInfo={selectedRoomData[0].userCompanionInfo}
             selectRoom={selectRoom}
           />
@@ -28,7 +28,7 @@ const Conversation = ({
           {/*Right side view chose */}
           {!selectedRoomData[0].messages.isEmpty ? (
             <MessagesRender
-              sideWidth={sideWidth}
+              sideMenuWidth={sideMenuWidth}
               messages={selectedRoomData[0].messages}
               userCompanionID={selectedRoomData[0].userCompanionInfo.user_id}
             />
@@ -42,7 +42,7 @@ const Conversation = ({
             </div>
           )}
 
-          <BottomMenuContainer sideWidth={sideWidth} />
+          <BottomMenuContainer sideMenuWidth={sideMenuWidth} />
         </div>
       ) : potentialRoom.isInitiateConversation ? (
         <div className={" flex  flex-col justify-center items-center h-full"}>

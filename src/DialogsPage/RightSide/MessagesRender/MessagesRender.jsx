@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import RMessage from "./RMessage.jsx";
 import LMessage from "./LMessage.jsx";
-const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
+const MessagesRender = ({ messages, userCompanionID, sideMenuWidth }) => {
   const scrollRef = useRef(null);
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "instant" });
@@ -28,7 +28,7 @@ const MessagesRender = ({ messages, userCompanionID, sideWidth }) => {
       className={
         "overflow-y-auto fixed top-16 bottom-20 w-full  bg-black rounded-l-xl"
       }
-      style={{ width: `calc(100vw - ${sideWidth}px)` }}
+      style={{ width: `calc(100vw - ${sideMenuWidth}px)` }}
     >
       {messagesComponents}
       <div ref={scrollRef} />

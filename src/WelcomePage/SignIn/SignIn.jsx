@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import InputForm from "../../ReusableComponnets/InputForm.jsx";
 import { FaArrowLeft } from "react-icons/fa6";
 import ErrorForm from "../ErrorForm.jsx";
-const LogIn = ({
+import { connect } from "react-redux";
+
+const SignIn = ({
   goBack,
   logInSubmitTC,
   isAuthorized,
@@ -58,4 +60,4 @@ const LogIn = ({
   );
 };
 
-export default LogIn;
+export default SignIn;

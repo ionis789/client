@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import S from "./S.module.css";
-import Registration from "./Registration/Registration.jsx";
-import LogIn from "./LogIn/LogIn.jsx";
+import SignUp from "./SignUp/SignUp.jsx";
+import SignIn from "./SignIn/SignIn.jsx";
 const WelcomePage = ({
   regSubmitTC,
   logInSubmitTC,
@@ -15,7 +15,7 @@ const WelcomePage = ({
     <div className={S.wrapper}>
       <div className={S.form}>
         {auth === "reg" ? (
-          <Registration
+          <SignUp
             resetAuthResponse={resetAuthResponse}
             goBack={() => setAuth("")}
             regSubmitTC={regSubmitTC}
@@ -23,7 +23,7 @@ const WelcomePage = ({
             goToLogIn={() => setAuth("log")}
           />
         ) : auth === "log" ? (
-          <LogIn
+          <SignIn
             resetAuthResponse={resetAuthResponse}
             goBack={() => setAuth("")}
             logInSubmitTC={logInSubmitTC}
@@ -40,7 +40,7 @@ const WelcomePage = ({
                 setAuth("reg");
               }}
             >
-              Register
+              Sign Up
             </div>
             <div
               className={
@@ -50,7 +50,7 @@ const WelcomePage = ({
                 setAuth("log");
               }}
             >
-              Log In
+              Sign In
             </div>
           </>
         )}

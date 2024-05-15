@@ -1,10 +1,10 @@
 import React from "react";
-import MessageBlock from "./MessageBlock.jsx";
+import LeftMessageBlock from "./LeftMessageBlock.jsx";
 
 const LMessage = ({ messageText }) => {
   return (
     <div className={"flex"}>
-      <MessageBlock messageText={messageText} />
+      <LeftMessageBlock messageText={messageText} />
     </div>
   );
 };
