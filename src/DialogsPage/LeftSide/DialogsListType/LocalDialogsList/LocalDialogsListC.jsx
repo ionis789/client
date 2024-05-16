@@ -24,13 +24,13 @@ const LocalDialogsListC = ({
   }, [allRoomsData.length]);
 
   return (
-    <div>
+    <>
       <LocalDialogsListPreviewBox
         allRoomsData={allRoomsData}
         selectRoom={selectRoom}
         selectedRoomID={selectedRoomID}
       />
-    </div>
+    </>
   );
 };
 

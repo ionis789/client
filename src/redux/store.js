@@ -9,6 +9,7 @@ import preloader from "./reducers/preloader.js";
 import rooms from "./reducers/rooms.js";
 import messagesSender from "./reducers/messages.js";
 import auth from "./reducers/auth.js";
+import visualState from "./reducers/visualState.js";
 import { thunk as thunkMiddleware } from "redux-thunk";
 let reducersStack = combineReducers({
   search,
@@ -17,6 +18,7 @@ let reducersStack = combineReducers({
   rooms,
   messagesSender,
   auth,
+  visualState,
 });
 
 let store = createStore(reducersStack, applyMiddleware(thunkMiddleware));

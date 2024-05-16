@@ -3,40 +3,33 @@ import { useNavigate } from "react-router-dom";
 import InputForm from "../../ReusableComponnets/InputForm.jsx";
 import { FaArrowLeft } from "react-icons/fa6";
 import ErrorForm from "../ErrorForm.jsx";
-import { connect } from "react-redux";
-
-const SignIn = ({
-  goBack,
-  logInSubmitTC,
-  isAuthorized,
-  logResponse,
-  resetAuthResponse,
-}) => {
+const SignIn = ({ ...props }) => {
   const navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogIn = (e) => {
     e.preventDefault();
-    logInSubmitTC(mail, password);
+    props.logInSubmitTC(mail, password);
   };
 
   useEffect(() => {
-    if (isAuthorized) {
+    props.loadUserData();
+    if (props.isAuthorized) {
       navigate("/d");
     }
-  }, [isAuthorized]);
+  }, [props.isAuthorized]);
 
   return (
     <div>
       <div
-        onClick={goBack}
+        onClick={props.goBack}
         className={
           "hover:cursor-pointer hover:opacity-70 transition duration-300 inline-block"
         }
       >
         <FaArrowLeft />
       </div>
-      {!logResponse ? (
+      {!props.logResponse ? (
         <form className={"bg-neutral-800 p-4 rounded-xl flex flex-col gap-4"}>
           <InputForm placeHolder={"Email"} setInputData={setMail} />
           <InputForm placeHolder={"Password"} setInputData={setPassword} />
@@ -51,9 +44,9 @@ const SignIn = ({
         </form>
       ) : (
         <ErrorForm
-          message={logResponse.message}
-          goBack={goBack}
-          resetAuthResponse={resetAuthResponse}
+          message={props.logResponse.message}
+          goBack={props.goBack}
+          resetAuthResponse={props.resetAuthResponse}
         />
       )}
     </div>

@@ -36,7 +36,6 @@ const auth = (state = defaultState, action) => {
     }
 
     case LOAD_USER_DATA: {
-      debugger;
       const loggedUserInfoString = localStorage.getItem("loggedUserInfo");
       const loggedUserInfo = JSON.parse(loggedUserInfoString);
       return {

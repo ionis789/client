@@ -2,33 +2,27 @@ import React, { useEffect, useState } from "react";
 import S from "./S.module.css";
 import SignUp from "./SignUp/SignUp.jsx";
 import SignIn from "./SignIn/SignIn.jsx";
-const WelcomePage = ({
-  regSubmitTC,
-  logInSubmitTC,
-  isAuthorized,
-  regResponse,
-  resetAuthResponse,
-  logResponse,
-}) => {
+const WelcomePage = ({ ...props }) => {
   const [auth, setAuth] = useState("");
   return (
     <div className={S.wrapper}>
       <div className={S.form}>
         {auth === "reg" ? (
           <SignUp
-            resetAuthResponse={resetAuthResponse}
+            resetAuthResponse={props.resetAuthResponse}
             goBack={() => setAuth("")}
-            regSubmitTC={regSubmitTC}
-            regResponse={regResponse}
+            regSubmitTC={props.regSubmitTC}
+            regResponse={props.regResponse}
             goToLogIn={() => setAuth("log")}
           />
         ) : auth === "log" ? (
           <SignIn
-            resetAuthResponse={resetAuthResponse}
+            loadUserData={props.loadUserData}
+            resetAuthResponse={props.resetAuthResponse}
             goBack={() => setAuth("")}
-            logInSubmitTC={logInSubmitTC}
-            isAuthorized={isAuthorized}
-            logResponse={logResponse}
+            logInSubmitTC={props.logInSubmitTC}
+            isAuthorized={props.isAuthorized}
+            logResponse={props.logResponse}
           />
         ) : (
           <>

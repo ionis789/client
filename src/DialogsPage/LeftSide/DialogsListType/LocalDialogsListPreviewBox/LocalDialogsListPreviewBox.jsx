@@ -16,8 +16,8 @@ const LocalDialogsListPreviewBox = ({
             key={r.roomID}
             className={
               selectedRoomID === r.roomID
-                ? "bg-blue-500  p-2 mb-2 transition duration-300 hover:cursor-pointer  "
-                : "hover:bg-neutral-600  p-2 mb-2 transition duration-300 hover:cursor-pointer"
+                ? "bg-blue-400  p-2 mb-2 transition duration-300 hover:cursor-pointer  "
+                : "hover:bg-neutral-500  p-2 mb-2 transition duration-300 hover:cursor-pointer"
             }
           >
             <div className={"flex items-center gap-3"}>
@@ -29,12 +29,24 @@ const LocalDialogsListPreviewBox = ({
                 }
               />
               <div>
-                <p className={" font-semibold text-md"}>
+                <p
+                  className={
+                    selectedRoomID === r.roomID
+                      ? "font-semibold text-md text-gray-950"
+                      : " font-semibold text-md"
+                  }
+                >
                   {r.userCompanionInfo.user_name}
                 </p>
 
                 {r.messages.length > 0 ? (
-                  <p className={"font-light"}>
+                  <p
+                    className={
+                      selectedRoomID === r.roomID
+                        ? "font-regular text-md text-black transition duration-300"
+                        : " font-regular text-md"
+                    }
+                  >
                     {r.messages[r.messages.length - 1].message_text.length > 15
                       ? r.messages[
                           r.messages.length - 1

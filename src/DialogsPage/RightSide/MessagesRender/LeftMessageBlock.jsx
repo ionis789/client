@@ -3,7 +3,7 @@ import React from "react";
 const LeftMessageBlock = ({ messageText }) => {
   return (
     <div
-      className={"p-2 m-4 rounded-xl"}
+      className={"p-2 m-4 ml-6 rounded-xl"}
       style={{ maxWidth: "70%", background: "rgb(255, 255, 255, 0.2)" }}
     >
       <p

@@ -6,16 +6,18 @@ const ConversationContainer = ({
   loggedUserID,
   selectedRoomID,
   createRoomTC,
-  allRoomsData,
+  selectedRoomData,
   selectRoom,
   sideMenuWidth,
+  isFocus,
 }) => {
   return (
     <div>
       <Conversation
+        isFocus={isFocus}
         sideMenuWidth={sideMenuWidth}
         selectRoom={selectRoom}
-        allRoomsData={allRoomsData}
+        selectedRoomData={selectedRoomData}
         selectedRoomID={selectedRoomID}
         loggedUserID={loggedUserID}
         potentialRoom={potentialRoom}
@@ -27,10 +29,11 @@ const ConversationContainer = ({
 
 const mapStateToProps = (state) => {
   return {
-    allRoomsData: state.rooms.allRoomsData,
+    selectedRoomData: state.rooms.selectedRoomData,
     selectedRoomID: state.rooms.selectedRoomID,
     potentialRoom: state.rooms.potentialRoom,
     loggedUserID: state.auth.loggedUserID,
+    isFocus: state.search.isFocus,
   };
 };
 

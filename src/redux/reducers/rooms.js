@@ -2,7 +2,7 @@ import roomsApi from "../../API/RoomsApi.js";
 import { findUserApi } from "../../API/findUserApi.js";
 import { handleFocus, setSearchText } from "./search.js";
 import { setFetching } from "./preloader.js";
-import { setNewUsers } from "./users.js";
+import { eraseUsersTC, setNewUsers } from "./users.js";
 
 const SET_USER_ROOMS = "SET_USER_ROOMS";
 const SELECT_ROOM = "SELECT_ROOM";
@@ -18,6 +18,30 @@ const defaultState = {
   },
   selectedRoomID: null,
   selectedGlobalUserID: null,
+  selectedRoomData: {
+    //   roomID: null,
+    //   userCompanionInfo: {
+    //     user_id: null,
+    //     user_name: "",
+    //     photoURL: null,
+    //     userStatus: {
+    //       isOnline: null,
+    //       lastSeen: null,
+    //       isTyping: null,
+    //     },
+    //   },
+    //   messages: [
+    //     {
+    //       message_id: null,
+    //       room_id: null,
+    //       sender_id: null,
+    //       message_text: "",
+    //       updatedAt: "2024-04-13",
+    //       createdAt: "2024-04-13",
+    //     },
+    //   ],
+    // },
+  },
   allRoomsData: [
     // {
     //   roomID: null,
@@ -69,9 +93,13 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case SELECT_ROOM: {
+      debugger;
       return {
         ...state,
         selectedRoomID: action.selectedRoomID,
+        selectedRoomData: state.allRoomsData.find(
+          (r) => r.roomID === action.selectedRoomID,
+        ),
       };
     }
     case SELECT_GLOBAL_USER: {
@@ -81,15 +109,22 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case UPDATE_MESSAGES: {
+      debugger;
+      let selectedRoomDataCopy = state.selectedRoomData;
       const updatedMessagesRoom = state.allRoomsData.map((room) => {
-        if (room.roomID === action.newMessage.room_id)
+        if (room.roomID === action.newMessage.room_id) {
           room.messages.push(action.newMessage);
+          selectedRoomDataCopy.messages.push(action.newMessage);
+        }
+
         return room;
       });
+      debugger;
       // id of room and updated messages of this room
       return {
         ...state,
         allRoomsData: [...updatedMessagesRoom],
+        selectedRoomData: selectedRoomDataCopy,
       };
     }
     case SET_USER_ROOMS: {
@@ -128,9 +163,9 @@ export const createRoomTC =
   (loggedUserID, userCompanionID) => async (dispatch) => {
     // aici se face socket emit pentru crearea unei cameri noi "io.emit("create_room") dupa ce sa facut acel emit, multumita la then din functia de mai jos se va face dispatch-urile ce vor curata totul, dupa vine se executa emitul de la server, se va face cererea "getRoomsTC()" in LocalDialogsListC io.on("new_room"). executarea dispatchuri-lor ce curata totul se executa doar pentru acel care o facut cererea de creare de camere la acelalat user doar se va face "io.on("new_room")", asta se intampla din cauza ca dispatchurile sunt excutata doara daca intri in thunkul "createRoomTC" dar pentru companion asta nu se va intampla el doar va primia evenimentul socket si atat.
     roomsApi.createRoom(loggedUserID, userCompanionID).then(() => {
-      dispatch(discardInitiateRoom());
-      dispatch(handleFocus(false));
-      dispatch(setSearchText(""));
+      debugger;
+
+      dispatch(selectRoom(userCompanionID));
     });
   };
 export const getRoomsTC = () => async (dispatch) => {

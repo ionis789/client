@@ -2,6 +2,7 @@ import React from "react";
 import { SlOptions } from "react-icons/sl";
 import { FaArrowLeft } from "react-icons/fa6";
 import SearchBox from "../../SearchBox/SearchBox.jsx";
+import { LuSettings2 } from "react-icons/lu";
 
 const NavState = ({
   handleFocus,
@@ -19,8 +20,8 @@ const NavState = ({
           className="hover: cursor-pointer hover:opacity-80 transition duration-200"
         />
       ) : (
-        <SlOptions
-          size={"20px"}
+        <LuSettings2
+          size={"24px"}
           className="hover: cursor-pointer hover:opacity-80 transition duration-200"
         />
       )}

@@ -4,16 +4,15 @@ import MessagesRender from "../MessagesRender/MessagesRender.jsx";
 import BottomMenuContainer from "../BottomMenu/BottomMenuContainer.jsx";
 const Conversation = ({
   loggedUserID,
-  allRoomsData,
+  selectedRoomData,
   selectedRoomID,
   potentialRoom,
   createRoomTC,
   selectRoom,
   sideMenuWidth,
+  isFocus,
 }) => {
-  const selectedRoomData = allRoomsData.filter(
-    (r) => r.roomID === selectedRoomID,
-  );
+  debugger;
   return (
     <>
       {/*daca este un utilizator cu care am un room*/}
@@ -21,16 +20,16 @@ const Conversation = ({
         <div className={"h-full flex flex-col"}>
           <TopMenu
             sideMenuWidth={sideMenuWidth}
-            userCompanionInfo={selectedRoomData[0].userCompanionInfo}
+            userCompanionInfo={selectedRoomData.userCompanionInfo}
             selectRoom={selectRoom}
           />
 
           {/*Right side view chose */}
-          {!selectedRoomData[0].messages.isEmpty ? (
+          {!selectedRoomData.messages.isEmpty ? (
             <MessagesRender
               sideMenuWidth={sideMenuWidth}
-              messages={selectedRoomData[0].messages}
-              userCompanionID={selectedRoomData[0].userCompanionInfo.user_id}
+              messages={selectedRoomData.messages}
+              userCompanionID={selectedRoomData.userCompanionInfo.user_id}
             />
           ) : (
             <div
@@ -45,7 +44,7 @@ const Conversation = ({
           <BottomMenuContainer sideMenuWidth={sideMenuWidth} />
         </div>
       ) : potentialRoom.isInitiateConversation ? (
-        <div className={" flex  flex-col justify-center items-center h-full"}>
+        <div className={"flex flex-col justify-center items-center h-screen"}>
           <p className={"text-3xl font-semibold"}>
             Start new dialog with {potentialRoom.userCompanionName} ?
           </p>
@@ -61,10 +60,18 @@ const Conversation = ({
             Start
           </button>
         </div>
+      ) : isFocus ? (
+        <div
+          className={
+            "text-3xl font-semibold flex justify-center items-center h-screen"
+          }
+        >
+          Find a user
+        </div>
       ) : (
         <div
           className={
-            "text-3xl font-semibold flex justify-center items-center h-full"
+            "text-3xl font-semibold flex justify-center items-center h-screen"
           }
         >
           Select dialog

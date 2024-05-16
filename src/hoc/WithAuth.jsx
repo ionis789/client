@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadUserData } from "../redux/reducers/auth.js";
-import WelcomePage from "../WelcomePage/WelcomePage.jsx";
-const WithAuth = (Component) => {
-  const EnhancedComponent = (isAuthorized, loadUserData, { ...props }) => {
+import WelcomePageContainer from "../WelcomePage/WelcomePageContainer.jsx";
+export const WithAuth = (WrappedComponent) => {
+  const AuthComponent = ({ isAuthorized, loadUserData, ...props }) => {
     useEffect(() => {
-      debugger;
       loadUserData();
-    }, []);
-    if (isAuthorized) {
-      return <Component {...props} />;
-    } else {
-      return <WelcomePage />;
-    }
+    }, [isAuthorized, loadUserData]);
+    return isAuthorized ? (
+      <WrappedComponent {...props} />
+    ) : (
+      <WelcomePageContainer />
+    );
   };
-  const mapStateToProps = (state) => {
-    return {
-      isAuthorized: state.auth.isAuthorized,
-    };
+  const mapStateToProps = (state) => ({
+    isAuthorized: state.auth.isAuthorized,
+  });
+  const mapDispatchToProps = {
+    loadUserData,
   };
-  connect(mapStateToProps, { loadUserData })(EnhancedComponent);
+  return connect(mapStateToProps, mapDispatchToProps)(AuthComponent);
 };
-export default WithAuth;

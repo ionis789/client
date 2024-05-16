@@ -35,6 +35,7 @@ const users = (state = defaultState, action) => {
 export const setNewUsers = (usersData) => ({ type: SET_NEW_USERS, usersData });
 export const eraseUsers = () => ({ type: ERASE_USERS });
 export const eraseUsersTC = () => (dispatch) => {
+  debugger;
   dispatch(eraseUsers());
   dispatch(handleFocus(false));
   dispatch(setSearchText(""));

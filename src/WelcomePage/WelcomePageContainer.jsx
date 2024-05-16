@@ -7,8 +7,6 @@ import {
   regSubmitTC,
   resetAuthResponse,
 } from "../redux/reducers/auth.js";
-import { useNavigate } from "react-router-dom";
-
 const WelcomePageContainer = ({
   regSubmitTC,
   logInSubmitTC,
@@ -16,11 +14,11 @@ const WelcomePageContainer = ({
   regResponse,
   logResponse,
   resetAuthResponse,
+  loadUserData,
 }) => {
-  const navigate = useNavigate();
-
   return (
     <WelcomePage
+      loadUserData={loadUserData}
       logInSubmitTC={logInSubmitTC}
       regSubmitTC={regSubmitTC}
       isAuthorized={isAuthorized}
