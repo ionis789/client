@@ -3,6 +3,7 @@ const LOAD_USER_DATA = "LOAD_USER_DATA";
 const REG_RESPONSE = "REG_RESPONSE";
 const LOG_RESPONSE = "LOG_RESPONSE";
 const RESET_AUTH_RESPONSE = "RESET_AUTH_RESPONSE";
+const LOG_OUT = "LOG_OUT";
 const defaultState = {
   isAuthorized: false,
   loggedUserID: null,
@@ -46,11 +47,22 @@ const auth = (state = defaultState, action) => {
         loggedUserMail: loggedUserInfo ? loggedUserInfo.loggedUserMail : null,
       };
     }
+    case LOG_OUT: {
+      localStorage.removeItem("loggedUserInfo");
+      return {
+        ...state,
+        isAuthorized: false,
+        loggedUserID: null,
+        loggedUserName: null,
+        loggedUserMail: null,
+      };
+    }
     default:
       return state;
   }
 };
 
+export const logOut = () => ({ type: LOG_OUT });
 export const logInSubmitTC = (mail, password) => async (dispatch) => {
   const response = await authorization.logInRequest(mail, password);
   response.status === 200

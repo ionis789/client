@@ -19,7 +19,6 @@ const DialogsPage = ({
   getRoomsTC,
 }) => {
   const elementRef = useRef(null);
-  debugger;
   useEffect(() => {
     const allRoomIDs = allRoomsData.map((r) => r.roomID);
     io.emit("join_room", allRoomIDs); // subscribe connected user with his socket.id to his rooms
@@ -48,19 +47,15 @@ const DialogsPage = ({
 
   // modify screen width on resize event
   useEffect(() => {
-    // first width checking and after only on resize event
+    const handleResize = () => {
+      adaptWidthTC(window.innerWidth, leftSideWidth);
+    };
     const leftSideWidth = elementRef.current.getBoundingClientRect().width;
     if (leftSideWidth) {
       adaptWidthTC(window, innerWidth, leftSideWidth);
-      window.addEventListener(
-        "resize",
-        adaptWidthTC(window.innerWidth, leftSideWidth),
-      );
+      window.addEventListener("resize", handleResize);
       return () => {
-        window.removeEventListener(
-          "resize",
-          adaptWidthTC(window.innerWidth, leftSideWidth),
-        );
+        window.removeEventListener("resize", handleResize);
       };
     }
   }, []);
