@@ -1,14 +1,24 @@
-const IS_SHOWED_CONVERSATION = "IS_SHOWED_CONVERSATION";
+import { VisualAdaptation } from "../../func/visualAdaptation.js";
+const SET_CONVERSATION_WIDTH = "SET_CONVERSATION_WIDTH";
+const SET_DEVICE_VIEW = "SET_DEVICE_VIEW";
 const defaultState = {
-  isShowedConversation: false, // mobile device screen width
+  isShowedConversation: true, // mobile device screen width
+  conversationWidth: null,
+  deviceView: "deskView",
 };
 
 const visualState = (state = defaultState, action) => {
   switch (action.type) {
-    case IS_SHOWED_CONVERSATION: {
+    case SET_CONVERSATION_WIDTH: {
       return {
         ...state,
-        isShowedConversation: action.isShowedConversation,
+        conversationWidth: action.conversationWidth,
+      };
+    }
+    case SET_DEVICE_VIEW: {
+      return {
+        ...state,
+        deviceView: action.deviceView,
       };
     }
   }
@@ -16,8 +26,18 @@ const visualState = (state = defaultState, action) => {
     ...state,
   };
 };
-export const setShowedConversation = (isShowedConversation) => ({
-  type: IS_SHOWED_CONVERSATION,
-  isShowedConversation,
+
+export const adaptWidthTC = (screenWidth, sideMenuWidth) => (dispatch) => {
+  const visualAdaptation = new VisualAdaptation(screenWidth, sideMenuWidth);
+  dispatch(setConversationWidth(visualAdaptation.getConversationWidth()));
+  dispatch(setDeviceView(visualAdaptation.whichDeviceView()));
+};
+export const setConversationWidth = (conversationWidth) => ({
+  type: SET_CONVERSATION_WIDTH,
+  conversationWidth,
+});
+export const setDeviceView = (deviceView) => ({
+  type: SET_DEVICE_VIEW,
+  deviceView,
 });
 export default visualState;

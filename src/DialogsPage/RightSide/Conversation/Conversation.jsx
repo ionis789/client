@@ -9,17 +9,16 @@ const Conversation = ({
   potentialRoom,
   createRoomTC,
   selectRoom,
-  sideMenuWidth,
   isFocus,
+  conversationWidth,
 }) => {
-  debugger;
   return (
     <>
       {/*daca este un utilizator cu care am un room*/}
       {selectedRoomID && !potentialRoom.isInitiateConversation ? (
-        <div className={"h-full flex flex-col"}>
+        <div className={"h-screen flex flex-col"}>
           <TopMenu
-            sideMenuWidth={sideMenuWidth}
+            conversationWidth={conversationWidth}
             userCompanionInfo={selectedRoomData.userCompanionInfo}
             selectRoom={selectRoom}
           />
@@ -27,7 +26,7 @@ const Conversation = ({
           {/*Right side view chose */}
           {!selectedRoomData.messages.isEmpty ? (
             <MessagesRender
-              sideMenuWidth={sideMenuWidth}
+              conversationWidth={conversationWidth}
               messages={selectedRoomData.messages}
               userCompanionID={selectedRoomData.userCompanionInfo.user_id}
             />
@@ -41,7 +40,7 @@ const Conversation = ({
             </div>
           )}
 
-          <BottomMenuContainer sideMenuWidth={sideMenuWidth} />
+          <BottomMenuContainer conversationWidth={conversationWidth} />
         </div>
       ) : potentialRoom.isInitiateConversation ? (
         <div className={"flex flex-col justify-center items-center h-screen"}>

@@ -5,11 +5,11 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { LuPhone } from "react-icons/lu";
 import { LuVideo } from "react-icons/lu";
 import { LuSettings2 } from "react-icons/lu";
-const TopMenu = ({ userCompanionInfo, selectRoom, sideMenuWidth }) => {
+const TopMenu = ({ userCompanionInfo, selectRoom, conversationWidth }) => {
   return (
     <div
-      className={"fixed top-0 h-16 flex justify-around items-center"}
-      style={{ width: `calc(100vw - ${sideMenuWidth}px)` }}
+      className={"h-16  md:sticky flex justify-around items-center "}
+      style={{ width: `${conversationWidth}px)` }}
     >
       <FaArrowLeft
         onClick={() => selectRoom(null)}

@@ -1,12 +1,13 @@
 import roomsApi from "../../API/RoomsApi.js";
 import { findUserApi } from "../../API/findUserApi.js";
-import { handleFocus, setSearchText } from "./search.js";
 import { setFetching } from "./preloader.js";
 import { eraseUsersTC, setNewUsers } from "./users.js";
+import messages from "./messages.js";
 
 const SET_USER_ROOMS = "SET_USER_ROOMS";
 const SELECT_ROOM = "SELECT_ROOM";
 const UPDATE_MESSAGES = "UPDATE_MESSAGES";
+const UPDATE_ROOM = "UPDATE_ROOM";
 const INITIATE_ROOM = "INITIATE_ROOM";
 const DISCARD_INITIATE_ROOM = "DISCARD_INITIATE_ROOM";
 const SELECT_GLOBAL_USER = "SELECT_GLOBAL_USER";
@@ -93,7 +94,6 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case SELECT_ROOM: {
-      debugger;
       return {
         ...state,
         selectedRoomID: action.selectedRoomID,
@@ -109,22 +109,39 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case UPDATE_MESSAGES: {
-      debugger;
-      let selectedRoomDataCopy = state.selectedRoomData;
-      const updatedMessagesRoom = state.allRoomsData.map((room) => {
-        if (room.roomID === action.newMessage.room_id) {
-          room.messages.push(action.newMessage);
-          selectedRoomDataCopy.messages.push(action.newMessage);
-        }
+      let selectedRoomDataCopy = { ...state.selectedRoomData };
 
+      const updatedRoomsData = state.allRoomsData.map((room) => {
+        if (room.roomID === action.newMessage.room_id) {
+          // Create a copy of the messages array and add the new message
+          const updatedMessages = [...room.messages, action.newMessage];
+          // Return a new room object with the updated messages
+          return { ...room, messages: updatedMessages };
+        }
+        // Return the room without modifications if it is not the target room
         return room;
       });
-      debugger;
-      // id of room and updated messages of this room
+
+      // Update selectedRoomDataCopy only if it is the target room
+      if (selectedRoomDataCopy.roomID === action.newMessage.room_id) {
+        selectedRoomDataCopy = {
+          ...selectedRoomDataCopy,
+          messages: [...selectedRoomDataCopy.messages, action.newMessage],
+        };
+      }
+
       return {
         ...state,
-        allRoomsData: [...updatedMessagesRoom],
+        allRoomsData: updatedRoomsData,
         selectedRoomData: selectedRoomDataCopy,
+      };
+    }
+
+    case UPDATE_ROOM: {
+      return {
+        ...state,
+        allRoomsData: [...state.allRoomsData, action.newRoomData],
+        selectedRoomData: action.newRoomData,
       };
     }
     case SET_USER_ROOMS: {
@@ -146,7 +163,15 @@ export const getMatchedUsers = (searchText, avoidUsers) => (dispatch) => {
     dispatch(setFetching(false));
   });
 };
-
+export const updateRooms = (newRoomData) => ({
+  type: UPDATE_ROOM,
+  newRoomData,
+});
+export const updateRoomsTC = (newRoomData, selectedRoomID) => (dispatch) => {
+  dispatch(updateRooms(newRoomData));
+  dispatch(eraseUsersTC());
+  dispatch(selectRoom(selectedRoomID));
+};
 export const initiatePotentialRoomTC =
   (potentialUserCompanionID, potentialUserCompanionName) => (dispatch) => {
     dispatch(
@@ -161,12 +186,7 @@ export const selectGlobalUser = (userID) => ({
 
 export const createRoomTC =
   (loggedUserID, userCompanionID) => async (dispatch) => {
-    // aici se face socket emit pentru crearea unei cameri noi "io.emit("create_room") dupa ce sa facut acel emit, multumita la then din functia de mai jos se va face dispatch-urile ce vor curata totul, dupa vine se executa emitul de la server, se va face cererea "getRoomsTC()" in LocalDialogsListC io.on("new_room"). executarea dispatchuri-lor ce curata totul se executa doar pentru acel care o facut cererea de creare de camere la acelalat user doar se va face "io.on("new_room")", asta se intampla din cauza ca dispatchurile sunt excutata doara daca intri in thunkul "createRoomTC" dar pentru companion asta nu se va intampla el doar va primia evenimentul socket si atat.
-    roomsApi.createRoom(loggedUserID, userCompanionID).then(() => {
-      debugger;
-
-      dispatch(selectRoom(userCompanionID));
-    });
+    await roomsApi.createRoom(loggedUserID, userCompanionID);
   };
 export const getRoomsTC = () => async (dispatch) => {
   const allRoomsData = await roomsApi.getRooms();

@@ -8,14 +8,14 @@ const ConversationContainer = ({
   createRoomTC,
   selectedRoomData,
   selectRoom,
-  sideMenuWidth,
   isFocus,
+  conversationWidth,
 }) => {
   return (
     <div>
       <Conversation
+        conversationWidth={conversationWidth}
         isFocus={isFocus}
-        sideMenuWidth={sideMenuWidth}
         selectRoom={selectRoom}
         selectedRoomData={selectedRoomData}
         selectedRoomID={selectedRoomID}
@@ -29,6 +29,7 @@ const ConversationContainer = ({
 
 const mapStateToProps = (state) => {
   return {
+    conversationWidth: state.visualState.conversationWidth,
     selectedRoomData: state.rooms.selectedRoomData,
     selectedRoomID: state.rooms.selectedRoomID,
     potentialRoom: state.rooms.potentialRoom,

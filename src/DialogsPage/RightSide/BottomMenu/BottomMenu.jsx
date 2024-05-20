@@ -8,27 +8,26 @@ const BottomMenu = ({
   changeMessage,
   selectedRoomID,
   senderID,
-  sideMenuWidth,
+  conversationWidth,
 }) => {
   return (
-    <div className={"flex h-20 items-center justify-center"}>
-      <div
-        className={
-          "pl-4 pr-4 fixed h-20 bottom-0 flex items-center justify-center gap-4"
-        }
-        style={{ width: `calc(100vw - ${sideMenuWidth}px)` }}
-      >
-        <MessageInputArea
-          messageInputText={messageInputText}
-          changeMessage={changeMessage}
-        />
-        <SendButton
-          sendMessageTC={sendMessageTC}
-          selectedRoomID={selectedRoomID}
-          senderID={senderID}
-          messageInputText={messageInputText}
-        />
-      </div>
+    <div
+      className={
+        "pl-4 pr-4 md:sticky bottom-0 flex items-center justify-center gap-4 m-4"
+      }
+      style={{ width: `${conversationWidth}px)` }}
+    >
+      <MessageInputArea
+        conversationWidth={conversationWidth}
+        messageInputText={messageInputText}
+        changeMessage={changeMessage}
+      />
+      <SendButton
+        sendMessageTC={sendMessageTC}
+        selectedRoomID={selectedRoomID}
+        senderID={senderID}
+        messageInputText={messageInputText}
+      />
     </div>
   );
 };
