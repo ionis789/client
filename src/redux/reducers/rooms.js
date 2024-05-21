@@ -94,6 +94,7 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case SELECT_ROOM: {
+      debugger;
       return {
         ...state,
         selectedRoomID: action.selectedRoomID,
@@ -138,10 +139,12 @@ const rooms = (state = defaultState, action) => {
     }
 
     case UPDATE_ROOM: {
+      debugger;
       return {
         ...state,
         allRoomsData: [...state.allRoomsData, action.newRoomData],
         selectedRoomData: action.newRoomData,
+        selectedRoomID: action.newRoomData.roomID,
       };
     }
     case SET_USER_ROOMS: {
@@ -168,9 +171,8 @@ export const updateRooms = (newRoomData) => ({
   newRoomData,
 });
 export const updateRoomsTC = (newRoomData, selectedRoomID) => (dispatch) => {
-  dispatch(updateRooms(newRoomData));
   dispatch(eraseUsersTC());
-  dispatch(selectRoom(selectedRoomID));
+  dispatch(updateRooms(newRoomData, selectedRoomID));
 };
 export const initiatePotentialRoomTC =
   (potentialUserCompanionID, potentialUserCompanionName) => (dispatch) => {
@@ -186,6 +188,7 @@ export const selectGlobalUser = (userID) => ({
 
 export const createRoomTC =
   (loggedUserID, userCompanionID) => async (dispatch) => {
+    debugger;
     await roomsApi.createRoom(loggedUserID, userCompanionID);
   };
 export const getRoomsTC = () => async (dispatch) => {
