@@ -59,13 +59,6 @@ const DialogsPage = ({
       };
     }
   }, []);
-  useEffect(() => {
-    const leftSideWidth = elementRef.current.getBoundingClientRect().width;
-    const handleResize = () => {
-      adaptWidthTC(window.innerWidth, leftSideWidth);
-    };
-  }, []);
-
   if (deviceView === "deskView") {
     return (
       <div className="grid grid-cols-[3fr,8fr] h-screen w-screen">
@@ -86,7 +79,7 @@ const DialogsPage = ({
     ) : selectedRoomID !== null || selectedGlobalUserID !== null ? (
       <RightSide />
     ) : (
-      <div>fdfd</div>
+      <div>Wait...</div>
     );
   }
 };
