@@ -47,17 +47,23 @@ const DialogsPage = ({
 
   // modify screen width on resize event
   useEffect(() => {
-    const handleResize = () => {
-      adaptWidthTC(window.innerWidth, leftSideWidth);
-    };
-    const leftSideWidth = elementRef.current.getBoundingClientRect().width;
-    if (leftSideWidth) {
-      adaptWidthTC(window, innerWidth, leftSideWidth);
+    if (elementRef.current) {
+      const leftSideWidth = elementRef.current.getBoundingClientRect().width;
+      const handleResize = () => {
+        adaptWidthTC(window.innerWidth, leftSideWidth);
+      };
+      handleResize();
       window.addEventListener("resize", handleResize);
       return () => {
         window.removeEventListener("resize", handleResize);
       };
     }
+  }, []);
+  useEffect(() => {
+    const leftSideWidth = elementRef.current.getBoundingClientRect().width;
+    const handleResize = () => {
+      adaptWidthTC(window.innerWidth, leftSideWidth);
+    };
   }, []);
 
   if (deviceView === "deskView") {
