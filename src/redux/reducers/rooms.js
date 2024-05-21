@@ -94,7 +94,6 @@ const rooms = (state = defaultState, action) => {
       };
     }
     case SELECT_ROOM: {
-      debugger;
       return {
         ...state,
         selectedRoomID: action.selectedRoomID,
@@ -139,7 +138,6 @@ const rooms = (state = defaultState, action) => {
     }
 
     case UPDATE_ROOM: {
-      debugger;
       return {
         ...state,
         allRoomsData: [...state.allRoomsData, action.newRoomData],
@@ -188,7 +186,6 @@ export const selectGlobalUser = (userID) => ({
 
 export const createRoomTC =
   (loggedUserID, userCompanionID) => async (dispatch) => {
-    debugger;
     await roomsApi.createRoom(loggedUserID, userCompanionID);
   };
 export const getRoomsTC = () => async (dispatch) => {

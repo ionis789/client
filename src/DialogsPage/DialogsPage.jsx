@@ -24,7 +24,6 @@ const DialogsPage = ({
     io.emit("join_room", allRoomIDs); // subscribe connected user with his socket.id to his rooms
     getRoomsTC(); // on componentMount and changed rooms count, I request all rooms from server
     io.on("new_room", (response) => {
-      debugger;
       if (response.status === 1) {
         const newRoomID = response.newRoomData.roomID;
         updateRoomsTC(response.newRoomData, newRoomID);
